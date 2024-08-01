@@ -28,7 +28,7 @@ class Session:
         for player in self.players.values():
             print(player.get_player_statistics())
 
-    def add_player(self, player_id, player):
+    def add_player(self, player_id, player: Player):
         self.players[player_id] = player
 
     def get_player(self, player_id):

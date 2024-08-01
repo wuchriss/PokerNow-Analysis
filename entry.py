@@ -1,4 +1,5 @@
 import re
+#from https://github.com/foster-chen/PNParser
 class Entry:
 
     def __init__(self, entry):

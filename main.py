@@ -12,8 +12,8 @@ if __name__ == "__main__":
     #game_link = input("Enter the link to your recent PokerNow game: ")
     
 
-    #file_path = "/Users/wuuchriss/Desktop/onlinehg.csv"
-    file_path = "/Users/wuuchriss/Desktop/plo_home.csv"
+    file_path = "/Users/wuuchriss/Desktop/onlinehg.csv"
+    #file_path = "/Users/wuuchriss/Desktop/plo_home.csv"
     #scrape = Scrape(game_link)
     #file_path = scrape.file_path
     if os.path.exists(file_path): #and (file_path.endswith('.csv') or file_path.endswith('.csv.crdownload')):
