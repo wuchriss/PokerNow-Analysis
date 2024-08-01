@@ -76,9 +76,9 @@ class Player:
                 self.possible_triple_barrel += 1
 
     def calculate_percentage(self, numerator, denominator):
-        return (numerator / denominator * 100) if denominator else 0
+        return round((numerator / denominator * 100), 1) if denominator else 0
 
-    def get_player_statistics(self):
+    def get_player_statistics_string(self):
         self.vpip_pct = self.calculate_percentage(self.hands_vpiped, self.hands_tracked)
         self.pfr_pct = self.calculate_percentage(self.pfr, self.hands_tracked)
         self.three_bet_pct = self.calculate_percentage(self.three_bet, self.hands_tracked)
@@ -107,6 +107,24 @@ class Player:
             f"Double Barrel: {self.double_barrel_pct:.2f}%\n"
             f"Triple Barrel: {self.triple_barrel_pct:.2f}%\n"
         )
+    
+    def get_player_stats(self):
+        self.get_player_statistics_string()
+        return {
+            "Name": self.name,
+            "Hands Played": self.hands_tracked,
+            "Pots Won": self.pots_won,
+            "VPIP (%)": self.vpip_pct,
+            "PFR (%)": self.pfr_pct,
+            "3-Bet (%)": self.three_bet_pct,
+            "4-Bet (%)": self.four_bet_pct,
+            "5-Bet (%)": self.five_bet_pct,
+            "C-Bet (%)": self.c_bet_pct,
+            "Flops as PFR (%)": self.flops_as_pfr_pct,
+            "Flop Check-Raise (%)": self.flop_check_raise_pct,
+            "Double Barrel (%)": self.double_barrel_pct,
+            "Triple Barrel (%)": self.triple_barrel_pct
+        }
 
     def get_player_attributes(self):
         return (

@@ -11,7 +11,7 @@ class PokerAnalysis:
         
     def run_analysis(self):
         self.session.analyze(self.entries)
-        print(self.session.test_statistic())
+        print(self.session.player_statistics_table_str())
         self.session.plot_pfr_vpip()
         
         
