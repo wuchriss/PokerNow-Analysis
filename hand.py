@@ -29,13 +29,15 @@ class Hand:
         checked_flop = set() #set of player_ids who check the flop
         won = set()
         for entry in self.entries:
+
             if entry.descriptor == "collect":
                 for name, player_id in entry.name:
                     if player_id not in won:
                         self.session.get_player(player_id).pots_won += 1
                         won.add(player_id)
+                    if self.stage == "preflop" and player_id not in self.players_in_hand: #when someone is in the BB and it folds to them
+                        self.session.get_player(player_id).hands_tracked += 1
                 
-
             if self.stage == "preflop":
                 if entry.descriptor == "flop":
                     self.stage = "flop"
@@ -50,7 +52,7 @@ class Hand:
                 if entry.descriptor in self.actions:
                     for name, player_id in entry.name:
                         self.session.get_player(player_id).act_preflop(entry.descriptor, 
-                                                                       num_bet + 1, 
+                                                                       num_bet, 
                                                                        player_id not in self.players_in_hand)
                         self.players_in_hand.add(player_id)
                         if entry.descriptor == "raise":

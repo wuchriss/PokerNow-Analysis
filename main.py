@@ -7,12 +7,12 @@ if __name__ == "__main__":
     #file_path = input("Enter the path to your poker log CSV file: ")
     #file_path = "/Users/wuuchriss/Desktop/poker_now_log.csv"
     #file_path = "/Users/wuuchriss/Desktop/ayaan_online.csv"
-    #file_path = "/Users/wuuchriss/Desktop/homegame.csv"
+    file_path = "/Users/wuuchriss/Desktop/homegame.csv"
     
     #game_link = input("Enter the link to your recent PokerNow game: ")
     
 
-    file_path = "/Users/wuuchriss/Desktop/onlinehg.csv"
+    #file_path = "/Users/wuuchriss/Desktop/mike_host.csv"
     #file_path = "/Users/wuuchriss/Desktop/plo_home.csv"
     #scrape = Scrape(game_link)
     #file_path = scrape.file_path

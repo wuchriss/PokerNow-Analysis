@@ -7,8 +7,11 @@ class Player:
         self.flops_pfr = 0 #numbers of hands to the flop where you are the pfr
         self.pfr = 0
         self.three_bet = 0
+        self.possible_three_bet = 0
         self.four_bet = 0
+        self.possible_four_bet = 0
         self.five_bet = 0
+        self.possible_five_bet = 0
         self.c_bet = 0
         self.possible_c_bet = 0
         self.flop_check_raise = 0
@@ -25,14 +28,20 @@ class Player:
     def act_preflop(self, descriptor, num_bet, new_in_pot): #can fold, check, raise, call
         if new_in_pot:
             self.hands_tracked += 1
+        if num_bet == 2:
+            self.possible_three_bet += 1
+        if num_bet == 3:
+            self.possible_four_bet += 1
+        if num_bet == 4:
+            self.possible_five_bet += 1
         if descriptor == "fold" or descriptor == "check":
             return
         if descriptor == "raise":
-            if num_bet == 3:
+            if num_bet == 2:
                 self.three_bet += 1
-            if num_bet == 4:
+            if num_bet == 3:
                 self.four_bet += 1
-            if num_bet == 5:
+            if num_bet == 4:
                 self.five_bet += 1
             if new_in_pot:
                 self.hands_vpiped += 1
@@ -40,6 +49,7 @@ class Player:
         if descriptor == "call":
             if new_in_pot:
                 self.hands_vpiped += 1
+                
 
     def act_flop(self, descriptor, preflopRaiser, new, checked):
         if new:
@@ -81,9 +91,9 @@ class Player:
     def get_player_statistics_string(self):
         self.vpip_pct = self.calculate_percentage(self.hands_vpiped, self.hands_tracked)
         self.pfr_pct = self.calculate_percentage(self.pfr, self.hands_tracked)
-        self.three_bet_pct = self.calculate_percentage(self.three_bet, self.hands_tracked)
-        self.four_bet_pct = self.calculate_percentage(self.four_bet, self.hands_tracked)
-        self.five_bet_pct = self.calculate_percentage(self.five_bet, self.hands_tracked)
+        self.three_bet_pct = self.calculate_percentage(self.three_bet, self.possible_three_bet)
+        self.four_bet_pct = self.calculate_percentage(self.four_bet, self.possible_four_bet)
+        self.five_bet_pct = self.calculate_percentage(self.five_bet, self.possible_five_bet)
         self.flop_check_raise_pct = self.calculate_percentage(self.flop_check_raise, self.possible_flop_check_raise)
         self.c_bet_pct = self.calculate_percentage(self.c_bet, self.possible_c_bet)
         self.double_barrel_pct = self.calculate_percentage(self.double_barrel, self.possible_double_barrel)
