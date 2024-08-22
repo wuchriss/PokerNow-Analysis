@@ -2,12 +2,32 @@ import os
 import pandas as pd
 from pokeranalysis import PokerAnalysis
 from scrape import Scrape
+import tkinter as tk
+from tkinter import filedialog
+
+
+
+def select_file():
+    # Create a Tkinter root window (it won't be visible)
+    root = tk.Tk()
+    root.withdraw()  # Hide the root window
+
+    # Open the file dialog and let the user select a file
+    file_path = filedialog.askopenfilename(
+        title="Select a file",
+        filetypes=(("CSV files", "*.csv"), ("All files", "*.*"))
+    )
+    root.destroy()
+    
+    # Return the selected file path
+    return file_path
 
 if __name__ == "__main__":
     #file_path = input("Enter the path to your poker log CSV file: ")
     #file_path = "/Users/wuuchriss/Desktop/poker_now_log.csv"
     #file_path = "/Users/wuuchriss/Desktop/ayaan_online.csv"
-    file_path = "/Users/wuuchriss/Desktop/homegame.csv"
+    file_path = "/Users/wuuchriss/Desktop/test.csv"
+    file_path = select_file()
     
     #game_link = input("Enter the link to your recent PokerNow game: ")
     
@@ -23,4 +43,7 @@ if __name__ == "__main__":
         analysis.run_analysis()
     else:
         print("Invalid file path. Please make sure the path is correct and points to a CSV file.")
+
+
+
     
