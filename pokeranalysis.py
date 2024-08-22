@@ -8,6 +8,7 @@ class PokerAnalysis:
         self.file_path = file_path
         self.session = Session("Session_1")
         self.entries = pd.read_csv(self.file_path)["entry"].iloc[::-1].reset_index(drop=True)
+        self.run_analysis()
         
     def run_analysis(self):
         self.session.analyze(self.entries)

@@ -37,6 +37,14 @@ class Session:
 
         df = pd.DataFrame(player_stats)
         return df.to_string(index=False)
+    
+    def player_statistics_table_pandas_df(self):
+        player_stats = []
+        for player in self.players.values():
+            player_stats.append(player.get_player_stats())
+
+        df = pd.DataFrame(player_stats)
+        return df
 
             
     def plot_pfr_vpip(self):
